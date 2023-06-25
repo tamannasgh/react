@@ -11,7 +11,6 @@ function filterRestaurants(searchTxt, data) {
     );
 }
 
-
 const Body = () => {
     
     console.log("render");

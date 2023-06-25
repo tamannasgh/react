@@ -1,7 +1,9 @@
+import Logo from "../assets/images/logo.png";
+
 const Header = () => {
     return (
         <div className="navbar">
-            <h1 className="logo">Food Villa</h1>
+            <img className="logo" src={Logo} alt="logo" />
 
             <ul className="nav-items">
                 <li>Home</li>
