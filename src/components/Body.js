@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 
 import {restaurantList, restaurantApi} from "../config";
 import Card from "./Card";
@@ -23,16 +24,21 @@ const Body = () => {
 
         async function getRestaurant(){
 
-            const req = await fetch(restaurantApi);
-            const data = await req.json();
-            const cards = data?.data?.cards;
+            try{
+                const req = await fetch(restaurantApi);
+                const data = await req.json();
+                const cards = data?.data?.cards;
 
-            cards.forEach(element => {
-                if(element.cardType === "seeAllRestaurants") {
-                    setAllRestaurants(element?.data?.data?.cards);
-                    setFilteredRestaurants(element?.data?.data?.cards);
-                }
-            });
+                cards.forEach(element => {
+                    if(element.cardType === "seeAllRestaurants") {
+                        setAllRestaurants(element?.data?.data?.cards);
+                        setFilteredRestaurants(element?.data?.data?.cards);
+                    }
+                });
+                
+            } catch(error){
+                console.log("no internet connection");
+            }
 
         }
         getRestaurant();
@@ -78,7 +84,9 @@ const Body = () => {
                     (filteredRestaurants.length < 1) ? <h1>Sorry, no restaurant found!</h1> :
                 
                     filteredRestaurants.map((restaurant) => {
-                        return <Card {...restaurant.data} key={restaurant.data.id}/>
+                        return <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}>
+                            <Card {...restaurant.data}/>
+                        </Link>
                     })
                 }
 
