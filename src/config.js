@@ -2,6 +2,8 @@ export const imageCdn = "https://res.cloudinary.com/swiggy/image/upload/fl_lossy
 
 export const restaurantApi = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING";
 
+export const githubUserApi = "https://api.github.com/users/";
+
 export const restaurantList = [
     {
         type: "restaurant",

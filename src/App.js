@@ -9,6 +9,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/ErrorPage";
 import Restaurant from "./components/Restaurant";
+// import Profile from "./components/Profile";
 
 
 const App = () => {
@@ -29,7 +30,13 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: "/about",
-                element: <About />
+                element: <About />,
+                // children: [
+                //     {
+                //         path: "profile",
+                //         element: <Profile />,
+                //     }
+                // ]
             },
             {
                 path: "/contact",

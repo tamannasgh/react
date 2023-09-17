@@ -6,38 +6,40 @@ import Card from "./Card";
 import Shimmer from "./shimmer";
 
 function filterRestaurants(searchTxt, data) {
-    console.log(data);
     return data.filter( (restaurant) =>
-        restaurant.data.name.toLowerCase().includes(searchTxt) 
+        restaurant.info.name.toLowerCase().includes(searchTxt) 
     );
 }
 
 const Body = () => {
     
-    console.log("render");
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [searchTxt, setSearchTxt] = useState("");
     const [filteredRestaurants, setFilteredRestaurants] = useState([]); 
 
     useEffect(()=>{
-        console.log("useeffects");
-
         async function getRestaurant(){
 
             try{
                 const req = await fetch(restaurantApi);
+                if(!req.ok)throw new Error("something went wrong");
                 const data = await req.json();
+                // console.log(data);
                 const cards = data?.data?.cards;
 
-                cards.forEach(element => {
-                    if(element.cardType === "seeAllRestaurants") {
-                        setAllRestaurants(element?.data?.data?.cards);
-                        setFilteredRestaurants(element?.data?.data?.cards);
+                cards.map( (card) => {
+
+                    if(card?.card?.card?.id === "top_brands_for_you"){
+
+                        const finalData = card?.card?.card?.gridElements?.infoWithStyle.restaurants;
+                        setAllRestaurants(finalData);
+                        setFilteredRestaurants(finalData);
                     }
+                    
                 });
-                
+
             } catch(error){
-                console.log("no internet connection");
+                console.log(error.message);
             }
 
         }
@@ -84,8 +86,8 @@ const Body = () => {
                     (filteredRestaurants.length < 1) ? <h1>Sorry, no restaurant found!</h1> :
                 
                     filteredRestaurants.map((restaurant) => {
-                        return <Link to={"/restaurant/" + restaurant.data.id} key={restaurant.data.id}>
-                            <Card {...restaurant.data}/>
+                        return <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
+                            <Card {...restaurant.info}/>
                         </Link>
                     })
                 }
