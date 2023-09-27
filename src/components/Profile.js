@@ -27,7 +27,7 @@ const Profile = (props) => {
     }, []);
 
     useEffect(() => {
-        alert("count is updating");
+        // alert("count is updating");
     }, [count]);
 
     return ( !(userInfo.name) ? <Shimmer count={1} /> :
