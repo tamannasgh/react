@@ -19,10 +19,11 @@ const Body = () => {
         (allRestaurants.length < 1) ? <Shimmer count={10} /> :
         <>
 
-            <div className="search-container">
+            <div className="m-10">
                 
                 <form>
                     <input 
+                        className="bg-white shadow-md mr-2 p-2 px-5 border rounded-md"
                         type="text" 
                         placeholder="Search..." 
                         value={searchTxt}
@@ -31,6 +32,7 @@ const Body = () => {
                         }}
                     />
                     <button 
+                        className="ml-4 bg-pink-50 p-2 rounded-md border shadow-md"
                         type="submit"
                         onClick={(e)=>{
                             e.preventDefault();
@@ -47,7 +49,7 @@ const Body = () => {
             </div>
 
 
-            <div className="card-list">
+            <div className=" my-5 flex flex-wrap justify-center">
 
                 {
                     (filteredRestaurants.length < 1) ? <h1>Sorry, no restaurant found!</h1> :
