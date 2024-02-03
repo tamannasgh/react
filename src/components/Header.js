@@ -14,7 +14,8 @@ const Header = () => {
                 <li><Link to="/about" className="mx-6 hover:font-semibold">About</Link></li>
                 <li><Link to="/contact" className="mx-6 hover:font-semibold">Contact</Link></li>
                 <li><Link to="/bigComponent" className="mx-6 hover:font-semibold">bigComponent</Link></li>
-                <li>Cart</li>
+                <li className="mx-6 hover:font-semibold cursor-pointer">Cart</li>
+                {/* <li>{user.name} - {user.email}</li> */}
             </ul>
 
         </div>

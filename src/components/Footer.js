@@ -1,5 +1,13 @@
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+
 const Footer = () => {
-    return <p>This is Footer</p>;
+    const {user, setUser} = useContext(UserContext);
+    return (
+        <footer>
+            <p>created by {user.name} - {user.email}</p>
+        </footer>
+    );
 }
 
 export default Footer;

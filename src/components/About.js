@@ -3,6 +3,8 @@ import React from "react";
 import ProfileClass from "./ProfileClass";
 import Profile from "./Profile";
 
+import UserContext from "../utils/UserContext";
+
 const About = () =>{
     return (
         <>
@@ -19,11 +21,18 @@ class AboutClass extends React.Component {
     
     render() {
         return(
-            <>
-                <h1>About page</h1>
+            <section className="m-10">
+                <h1 className="font-bold text-2xl m-3">About page</h1>
                 <Profile name="tamannasgh" />
+
+                <UserContext.Consumer>
+                    {(user)=> (
+                        <p>{user.name} - {user.email}</p>
+                    )}
+                </UserContext.Consumer>
+
                 {/* <ProfileClass name="chmodx1sh" /> */}
-            </>
+            </section>
         )
     }
 }

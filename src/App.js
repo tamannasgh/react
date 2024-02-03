@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from "react";
+import React, {lazy, Suspense, useState} from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -11,18 +11,21 @@ import Error from "./components/ErrorPage";
 import Restaurant from "./components/Restaurant";
 // import Profile from "./components/Profile";
 import useOnline from "./hooks/useOnline";
+import UserContext from "./utils/UserContext";
 
 const BigComponent = lazy(()=>import("./components/BigComponent"));
 
 
 const App = () => {
     const online = useOnline();
+    const [user, setUser] = useState({name:"tamanna", email:"tamanna@gmail.com"});
+
     return online ? (
-        <>
-            <Header />
+        <UserContext.Provider value={{user, setUser}}>
+            <Header/>
             <Outlet />
             <Footer />
-        </>
+        </UserContext.Provider>
     ) : <h1>opps! you're offline</h1>;
 }
 
