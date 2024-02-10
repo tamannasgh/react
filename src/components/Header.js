@@ -1,7 +1,9 @@
 import Logo from "../assets/images/logo.png";
 import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+    const cartItems = useSelector( (store) => store.cart);
     return (
         <div className="bg-pink-50 shadow-md flex justify-around items-center p-2 mb-4">
 
@@ -14,8 +16,7 @@ const Header = () => {
                 <li><Link to="/about" className="mx-6 hover:font-semibold">About</Link></li>
                 <li><Link to="/contact" className="mx-6 hover:font-semibold">Contact</Link></li>
                 <li><Link to="/bigComponent" className="mx-6 hover:font-semibold">bigComponent</Link></li>
-                <li className="mx-6 hover:font-semibold cursor-pointer">Cart</li>
-                {/* <li>{user.name} - {user.email}</li> */}
+                <li><Link to="/cart" className="mx-6 hover:font-semibold cursor-pointer">Cart {cartItems.length}</Link></li>
             </ul>
 
         </div>

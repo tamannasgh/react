@@ -12,20 +12,23 @@ import Restaurant from "./components/Restaurant";
 // import Profile from "./components/Profile";
 import useOnline from "./hooks/useOnline";
 import UserContext from "./utils/UserContext";
-
 const BigComponent = lazy(()=>import("./components/BigComponent"));
-
+import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const App = () => {
     const online = useOnline();
     const [user, setUser] = useState({name:"tamanna", email:"tamanna@gmail.com"});
 
     return online ? (
-        <UserContext.Provider value={{user, setUser}}>
-            <Header/>
-            <Outlet />
-            <Footer />
-        </UserContext.Provider>
+        <Provider store={store}>
+            <UserContext.Provider value={{user, setUser}}>
+                <Header/>
+                <Outlet />
+                <Footer />
+            </UserContext.Provider>
+        </Provider>
     ) : <h1>opps! you're offline</h1>;
 }
 
@@ -62,6 +65,10 @@ const appRouter = createBrowserRouter([
                 element: <Suspense fallback={<h1>loading...</h1>} >
                     <BigComponent />
                 </Suspense>
+            },
+            {
+                path: "/cart",
+                element: <Cart />
             }
         ]
     },
