@@ -23,9 +23,7 @@ const useRestaurant = ([setAllRestaurants, setFilteredRestaurants]) =>{
                     }
                     
                 });
-
-
-
+                
             } catch(error){
                 console.log(error.message);
             }

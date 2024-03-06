@@ -1,6 +1,6 @@
 export default function Shimmer({count = 5}){
     return(
-        <div className="flex flex-wrap justify-center mt-4">
+        <div data-testid="shimmer" className="flex flex-wrap justify-center mt-4">
 
             {
                 Array(count).fill(0).map((value, index)=>{

@@ -23,6 +23,7 @@ const Body = () => {
                 
                 <form>
                     <input 
+                        data-testid="search-input"
                         className="bg-white shadow-md mr-2 p-2 px-5 border rounded-md"
                         type="text" 
                         placeholder="Search..." 
@@ -32,6 +33,7 @@ const Body = () => {
                         }}
                     />
                     <button 
+                        data-testid="search-btn"
                         className="ml-4 bg-pink-50 p-2 rounded-md border shadow-md"
                         type="submit"
                         onClick={(e)=>{
@@ -49,7 +51,7 @@ const Body = () => {
             </div>
 
 
-            <div className=" my-5 flex flex-wrap justify-center">
+            <div data-testid="res-cards" className=" my-5 flex flex-wrap justify-center">
 
                 {
                     (filteredRestaurants.length < 1) ? <h1>Sorry, no restaurant found!</h1> :
